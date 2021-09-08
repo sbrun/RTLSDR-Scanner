@@ -26,7 +26,7 @@ from collections import OrderedDict
 from decimal import Decimal
 from operator import itemgetter, mul
 
-from matplotlib.dates import seconds
+from matplotlib.dates import SEC_PER_DAY
 import numpy
 
 from rtlsdr_scanner.constants import WINFUNC
@@ -281,7 +281,8 @@ def create_mesh(spectrum, mplTime):
 
     x[:, 0] = x[:, 1]
     if mplTime:
-        y[:, 0] = y[:, 1] - seconds(1)
+        seconds = 1 / SEC_PER_DAY
+        y[:, 0] = y[:, 1] - seconds
     else:
         y[:, 0] = y[:, 1] - 1
     z[:, 0] = z[:, 1]
